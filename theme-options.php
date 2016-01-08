@@ -68,7 +68,7 @@ function theme_options_do_page() {
 		<?php screen_icon(); echo "<h2>" . get_current_theme() . __( ' Theme Options', 'sampletheme' ) . "</h2>"; ?>
 
 		<?php if ( false !== $_REQUEST['settings-updated'] ) : ?>
-		<div class="updated fade"><p><strong><?php _e( 'Options saved', 'sampletheme' ); ?></strong></p></div>
+			<div class="updated fade"><p><strong><?php _e( 'Options saved', 'sampletheme' ); ?></strong></p></div>
 		<?php endif; ?>
 
 		<form method="post" action="options.php">
@@ -94,10 +94,16 @@ function theme_options_do_page() {
 				 * A sample text input option
 				 */
 				?>
-				<tr valign="top"><th scope="row"><?php _e( 'Some text', 'sampletheme' ); ?></th>
+				<tr valign="top"><th scope="row"><?php _e( 'Телефоны', 'sampletheme' ); ?></th>
 					<td>
-						<input id="sample_theme_options[sometext]" class="regular-text" type="text" name="sample_theme_options[sometext]" value="<?php esc_attr_e( $options['sometext'] ); ?>" />
-						<label class="description" for="sample_theme_options[sometext]"><?php _e( 'Sample text input', 'sampletheme' ); ?></label>
+						<input id="sample_theme_options[phonetext]" class="regular-text" type="text" name="sample_theme_options[phonetext]" value="<?php esc_attr_e( $options['phonetext'] ); ?>" />
+
+					</td>
+				</tr>
+				<tr valign="top"><th scope="row"><?php _e( 'Web-site', 'sampletheme' ); ?></th>
+					<td>
+						<input id="sample_theme_options[sitetext]" class="regular-text" type="text" name="sample_theme_options[sitetext]" value="<?php esc_attr_e( $options['sitetext'] ); ?>" />
+
 					</td>
 				</tr>
 
@@ -110,18 +116,18 @@ function theme_options_do_page() {
 					<td>
 						<select name="sample_theme_options[selectinput]">
 							<?php
-								$selected = $options['selectinput'];
-								$p = '';
-								$r = '';
+							$selected = $options['selectinput'];
+							$p = '';
+							$r = '';
 
-								foreach ( $select_options as $option ) {
-									$label = $option['label'];
-									if ( $selected == $option['value'] ) // Make default first in list
-										$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-									else
-										$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
-								}
-								echo $p . $r;
+							foreach ( $select_options as $option ) {
+								$label = $option['label'];
+								if ( $selected == $option['value'] ) // Make default first in list
+									$p = "\n\t<option style=\"padding-right: 10px;\" selected='selected' value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+								else
+									$r .= "\n\t<option style=\"padding-right: 10px;\" value='" . esc_attr( $option['value'] ) . "'>$label</option>";
+							}
+							echo $p . $r;
 							?>
 						</select>
 						<label class="description" for="sample_theme_options[selectinput]"><?php _e( 'Sample select input', 'sampletheme' ); ?></label>
@@ -136,7 +142,7 @@ function theme_options_do_page() {
 				<tr valign="top"><th scope="row"><?php _e( 'Radio buttons', 'sampletheme' ); ?></th>
 					<td>
 						<fieldset><legend class="screen-reader-text"><span><?php _e( 'Radio buttons', 'sampletheme' ); ?></span></legend>
-						<?php
+							<?php
 							if ( ! isset( $checked ) )
 								$checked = '';
 							foreach ( $radio_options as $option ) {
@@ -153,7 +159,7 @@ function theme_options_do_page() {
 								<label class="description"><input type="radio" name="sample_theme_options[radioinput]" value="<?php esc_attr_e( $option['value'] ); ?>" <?php echo $checked; ?> /> <?php echo $option['label']; ?></label><br />
 								<?php
 							}
-						?>
+							?>
 						</fieldset>
 					</td>
 				</tr>

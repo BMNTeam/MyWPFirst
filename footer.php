@@ -2,15 +2,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>&copy; Максим Барсуков</p>
+                <p>&copy; <?php echo date('Y')?> <?php echo get_bloginfo('name')?></p>
 
             </div>
             <div class="col-sm-12">
                 <div class="social-wrap">
+
                     <ul>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-vk"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github	"></i></a></li>
+                        <?php if(have_posts()): query_posts('cat=3');
+                            while (have_posts()):the_post()?>
+
+                                <li><a href="<?php echo get_post_meta($post->ID,'soc_url',true) ?> "><i class="fa <?php echo get_post_meta($post->ID,'font_awesome',true) ?>	"></i></a></li>
+                            <?endwhile;endif; wp_reset_query();?>
+
+
                     </ul>
                 </div>
             </div>

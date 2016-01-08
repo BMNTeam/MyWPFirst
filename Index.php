@@ -38,32 +38,30 @@
 			<?endwhile;endif; wp_reset_query();?>
 
 
-			<?php if(have_posts()): query_posts('p=4');
+			<?php if(have_posts()): query_posts('p=7');
 				while (have_posts()):the_post()?>
-					<?php the_title()?>
-					<?php the_content()?>
-				<?endwhile;endif; wp_reset_query();?>
 
-			<div class="col-md-4 animation-3 personal-last-blog">
-				<h3>Персональная информация</h3>
-				<h2 class="personal-header" ><?php echo get_bloginfo('name')?> </h2>
-				<ul>
-					<li>Профессиональное создание сайтов</li>
-					<li>Разрботка дизайна</li>
-					<li>HTML верстка</li>
-					<li>Посадка на CMS WordPress</li>
-					<li>День рождения 11 января 1991 года </li>
-					<li>Номер телефона: +7 918 753 1801</li>
-					<li>E-mail: <a href="mailto:maksim_bender08@mail.ru">maksim_bender08@mail.ru</a></li>
-				</ul>
-				<div class="social-wrap">
-					<ul>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-vk"></i></a></li>
-						<li><a href="#"><i class="fa fa-github	"></i></a></li>
-					</ul>
-				</div>
-			</div>
+
+					<div class="col-md-4 animation-3 personal-last-blog">
+						<h3><?php the_title()?></h3>
+						<h2 class="personal-header" ><?php echo get_bloginfo('name')?> </h2>
+						<?php the_content()?>
+						<div class="social-wrap">
+							<?endwhile;endif; wp_reset_query();?>
+							<ul>
+								<?php if(have_posts()): query_posts('cat=3');
+									while (have_posts()):the_post()?>
+
+										<li><a href="<?php echo get_post_meta($post->ID,'soc_url',true) ?> "><i class="fa <?php echo get_post_meta($post->ID,'font_awesome',true) ?>	"></i></a></li>
+									<?endwhile;endif; wp_reset_query();?>
+
+
+							</ul>
+						</div>
+					</div>
+
+
+
 		</div>
 	</div>
 </section>
@@ -71,9 +69,9 @@
 <section id="resume" class="s-resume ">
 
 	<div class="section-header">
-		<h2>Резюме</h2>
+		<h2><?php echo  get_cat_name(4)?></h2>
 		<div class="s-descr-wrap">
-			<div class="s-descr">Мои знания и достижения</div>
+			<div class="s-descr"><?php echo category_description(4) ?></div>
 		</div>
 	</div>
 
@@ -81,42 +79,31 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-sm-6 left">
-					<h3>Работа</h3>
+					<h3><?php echo  get_cat_name(5)?></h3>
 					<div class="resume-icon"><i class="icon-basic-case"></i></div>
+
+					<?php if(have_posts()): query_posts('cat=5');
+						while (have_posts()):the_post()?>
 					<div class="resume-item">
-						<div class="year">2007-2012</div>
-						<div class="resume-description">ООО Лесопторг <strong>Программист</strong></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci minus veniam odit praesentium, porro nisi, culpa quibusdam unde temporibus quasi repudiandae dolorum ut dolorem!</p>
+						<div class="year"> <?php echo get_post_meta($post->ID,'resume_year',true)?> </div>
+						<div class="resume-description"><?php echo get_post_meta($post->ID,'resume_place',true)?> <strong><?php the_title()?></strong></div>
+						<?php the_content()?>
 					</div>
-					<div class="resume-item">
-						<div class="year">2007-2012</div>
-						<div class="resume-description">ООО Лесопторг <strong>Программист</strong></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci minus veniam odit praesentium, porro nisi, culpa quibusdam unde temporibus quasi repudiandae dolorum ut dolorem!</p>
-					</div>
-					<div class="resume-item">
-						<div class="year">2007-2012</div>
-						<div class="resume-description">ООО Лесопторг <strong>Программист</strong></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci minus veniam odit praesentium, porro nisi, culpa quibusdam unde temporibus quasi repudiandae dolorum ut dolorem!</p>
-					</div>
+						<?endwhile;endif; wp_reset_query();?>
 				</div>
 				<div class="col-md-6 col-sm-6 right">
-					<h3>Учеба</h3>
+					<h3><?php echo  get_cat_name(6)?></h3>
 					<div class="resume-icon"><i class="icon-basic-book-pen"></i></div>
-					<div class="resume-item">
-						<div class="year">2007-2012</div>
-						<div class="resume-description">ООО Лесопторг <strong>Программист</strong></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci minus veniam odit praesentium, porro nisi, culpa quibusdam unde temporibus quasi repudiandae dolorum ut dolorem!</p>
-					</div>
-					<div class="resume-item">
-						<div class="year">2007-2012</div>
-						<div class="resume-description">ООО Лесопторг <strong>Программист</strong></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci minus veniam odit praesentium, porro nisi, culpa quibusdam unde temporibus quasi repudiandae dolorum ut dolorem!</p>
-					</div>
-					<div class="resume-item">
-						<div class="year">2007-2012</div>
-						<div class="resume-description">ООО Лесопторг <strong>Программист</strong></div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime adipisci minus veniam odit praesentium, porro nisi, culpa quibusdam unde temporibus quasi repudiandae dolorum ut dolorem!</p>
-					</div>
+
+					<?php if(have_posts()): query_posts('cat=6');
+						while (have_posts()):the_post()?>
+							<div class="resume-item">
+								<div class="year"> <?php echo get_post_meta($post->ID,'resume_year',true)?> </div>
+								<div class="resume-description"><?php echo get_post_meta($post->ID,'resume_place',true)?> <strong><?php the_title()?></strong></div>
+								<?php the_content()?>
+							</div>
+						<?endwhile;endif; wp_reset_query();?>
+
 				</div>
 			</div>
 		</div>
@@ -133,9 +120,9 @@
 <section id="portfolio" class="s-portfolio bg-dark">
 
 	<div class="section-header">
-		<h2>Портфолио</h2>
+		<h2><?php echo get_cat_name(7)?></h2>
 		<div class="s-descr-wrap">
-			<div class="s-descr">Мои последние работы</div>
+			<div class="s-descr"><?php echo category_description(7);?></div>
 		</div>
 	</div>
 
@@ -145,108 +132,42 @@
 			<div class="filter_div controls">
 				<ul>
 					<li class="filter active" data-filter="none" >Все работы</li>
-					<li class="filter" data-filter=".category-1">Сайты</li>
-					<li class="filter" data-filter=".category-2">Айдентика</li>
-					<li class="filter" data-filter=".category-3">Логотипы</li>
+					<li class="filter" data-filter=".sites">Сайты</li>
+					<li class="filter" data-filter=".identy">Айдентика</li>
+					<li class="filter" data-filter=".logos">Логотипы</li>
 				</ul>
 			</div>
 			<div id="portfolio_grid">
 
-				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item category-1">
-					<img src="img/portfolio/1.jpg" alt="Alt">
-					<div class="port-item-cont">
-						<h3>Заголовок работы</h3>
-						<p>Описание работы</p>
-						<a href="#" class="popup-content">Посмотреть</a>
-						<div class="hidden">
-							<div class="portfolio-description">
-								<h3>Заголовок работы</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dolore nam explicabo dolores ducimus doloremque odit et magnam ratione iure necessitatibus vitae quasi porro ea, perspiciatis dolorem. Totam, dolore, necessitatibus?</p>
-								<img src="img/portfolio/1.jpg" alt="Alt">
-							</div>
-						</div>
-					</div>
-				</div>
+				<?php if(have_posts()): query_posts('cat=7');
+					while (have_posts()):the_post()?>
 
-				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item category-1">
-					<img src="img/portfolio/1.jpg" alt="Alt">
+				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item <?php
+				$tags = wp_get_post_tags($post->ID);
+				if($tags){
+					foreach($tags as $tag){
+						echo ' '.$tag->name;
+					};
+				};
+				?>">
+					<?php the_post_thumbnail(array(400,300)); ?>
 					<div class="port-item-cont">
-						<h3>Заголовок работы</h3>
-						<p>Описание работы</p>
+						<h3><?php the_title()?></h3>
+						<?php the_excerpt()?>
 						<a href="#" class="popup-content">Посмотреть</a>
 						<div class="hidden">
 							<div class="portfolio-description">
 								<h3>Заголовок работы</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dolore nam explicabo dolores ducimus doloremque odit et magnam ratione iure necessitatibus vitae quasi porro ea, perspiciatis dolorem. Totam, dolore, necessitatibus?</p>
-								<img src="img/portfolio/1.jpg" alt="Alt">
+								<?php the_content()?>
+								<img src="<?php $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+								echo $large_image_url[0];
+								?>" alt="Alt">
 							</div>
 						</div>
 					</div>
 				</div>
+					<?endwhile;endif; wp_reset_query();?>
 
-				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item category-1">
-					<img src="img/portfolio/2.jpg" alt="Alt">
-					<div class="port-item-cont">
-						<h3>Заголовок работы</h3>
-						<p>Описание работы</p>
-						<a href="#" class="popup-content">Посмотреть</a>
-						<div class="hidden">
-							<div class="portfolio-description">
-								<h3>Заголовок работы</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dolore nam explicabo dolores ducimus doloremque odit et magnam ratione iure necessitatibus vitae quasi porro ea, perspiciatis dolorem. Totam, dolore, necessitatibus?</p>
-								<img src="img/portfolio/2.jpg" alt="Alt">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item category-1">
-					<img src="img/portfolio/3.jpg" alt="Alt">
-					<div class="port-item-cont">
-						<h3>Заголовок работы</h3>
-						<p>Описание работы</p>
-						<a href="#" class="popup-content">Посмотреть</a>
-						<div class="hidden">
-							<div class="portfolio-description">
-								<h3>Заголовок работы</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dolore nam explicabo dolores ducimus doloremque odit et magnam ratione iure necessitatibus vitae quasi porro ea, perspiciatis dolorem. Totam, dolore, necessitatibus?</p>
-								<img src="img/portfolio/3.jpg" alt="Alt">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item category-1">
-					<img src="img/portfolio/4.jpg" alt="Alt">
-					<div class="port-item-cont">
-						<h3>Заголовок работы</h3>
-						<p>Описание работы</p>
-						<a href="#" class="popup-content">Посмотреть</a>
-						<div class="hidden">
-							<div class="portfolio-description">
-								<h3>Заголовок работы</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dolore nam explicabo dolores ducimus doloremque odit et magnam ratione iure necessitatibus vitae quasi porro ea, perspiciatis dolorem. Totam, dolore, necessitatibus?</p>
-								<img src="img/portfolio/4.jpg" alt="Alt">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="mix col-md-3 col-sm-6 col-xs-12 portfolio-item category-1">
-					<img src="img/portfolio/5.jpg" alt="Alt">
-					<div class="port-item-cont">
-						<h3>Заголовок работы</h3>
-						<p>Описание работы</p>
-						<a href="#" class="popup-content">Посмотреть</a>
-						<div class="hidden">
-							<div class="portfolio-description">
-								<h3>Заголовок работы</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, dolore nam explicabo dolores ducimus doloremque odit et magnam ratione iure necessitatibus vitae quasi porro ea, perspiciatis dolorem. Totam, dolore, necessitatibus?</p>
-								<img src="img/portfolio/5.jpg" alt="Alt">
-							</div>
-						</div>
-					</div>
-				</div>
 
 
 
@@ -280,12 +201,13 @@
 				<div class="contact-box">
 					<i class="contact-icon icon-basic-smartphone"></i>
 					<h3>Телефон: </h3>
-					<p>+7 918 753 1801</p>
+					<p><?php $options=get_option('sample_theme_options'); echo $options['phonetext'];?></p>
 				</div>
 				<div class="contact-box">
 					<i class="contact-icon icon-basic-webpage-img-txt"></i>
 					<h3>Web-сайт: </h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+					<p><a href="<?php $options=get_option('sample_theme_options'); echo $options['sitetext'];?>"><?php $options=get_option('sample_theme_options'); echo $options['sitetext'];?></a>
+						</p>
 				</div>
 			</div>
 
